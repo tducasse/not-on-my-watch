@@ -1,8 +1,84 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://house.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 137.07 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 142.1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 244.645 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 206.842 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 89.2979, 18.3696 )
 
 [node name="Game" type="Node2D"]
 
+[node name="house" type="Sprite" parent="."]
+position = Vector2( -1, 0 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 12.92, 7.28 )
+color = Color( 0, 0, 0, 0.921569 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 118, 70 )
+
+[node name="Boundaries" type="Node2D" parent="."]
+
+[node name="Left" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Left"]
+light_mask = 2
+position = Vector2( -9.19241, 141.472 )
+shape = SubResource( 1 )
+
+[node name="Right" type="StaticBody2D" parent="Boundaries"]
+position = Vector2( 531.391, -10.6066 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Right"]
+light_mask = 2
+position = Vector2( -10.5273, 152.15 )
+shape = SubResource( 2 )
+
+[node name="Bottom" type="StaticBody2D" parent="Boundaries"]
+position = Vector2( 260.58, 301.554 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Bottom"]
+light_mask = 2
+position = Vector2( -5.80789, -3.58887 )
+rotation = 1.57079
+shape = SubResource( 3 )
+
+[node name="Top" type="StaticBody2D" parent="Boundaries"]
+position = Vector2( 219.038, -23.6213 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Top"]
+light_mask = 2
+position = Vector2( 35.9618, 13.0147 )
+rotation = 1.57079
+scale = Vector2( 1, 1.2 )
+shape = SubResource( 4 )
+
+[node name="House" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/House"]
+light_mask = 2
+position = Vector2( 262.657, 19.0516 )
+shape = SubResource( 5 )
+
+[node name="Target" type="Position2D" parent="."]
+position = Vector2( 269.355, 61.9874 )

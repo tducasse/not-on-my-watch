@@ -5,6 +5,11 @@ onready var MoveAnim = $MoveAnim
 
 var velocity = Vector2.ZERO
 var speed = 200
+var sprite_offset = 7
+
+func _ready():
+	Anim.position.x = sprite_offset
+	Anim.flip_h = true
 
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
@@ -16,9 +21,13 @@ func _process(delta):
 		if Input.is_action_pressed('right'):
 			velocity.x += 1 * delta
 			Anim.flip_h = true
+			if(Anim.position.x < 0):
+				Anim.position.x = sprite_offset
 		if Input.is_action_pressed('left'):
 			velocity.x -= 1 * delta
 			Anim.flip_h = false
+			if(Anim.position.x > 0):
+				Anim.position.x = -sprite_offset
 		if Input.is_action_pressed('down'):
 			velocity.y += 1 * delta
 		if Input.is_action_pressed('up'):
