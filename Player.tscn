@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://grandma.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -20,6 +20,10 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 8.11613
+height = 10.2569
+
 [sub_resource type="Animation" id=4]
 resource_name = "move"
 length = 0.8
@@ -39,7 +43,7 @@ tracks/0/keys = {
 
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 11.5809
-height = 23.2085
+height = 1.26197
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -49,13 +53,23 @@ position = Vector2( 7, -16 )
 frames = SubResource( 3 )
 flip_h = true
 
+[node name="Hitbox" type="Area2D" parent="Anim"]
+position = Vector2( -7, 16 )
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Anim/Hitbox"]
+position = Vector2( 19.478, -13.7657 )
+rotation = -0.56108
+shape = SubResource( 8 )
+
 [node name="MoveAnim" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
 anims/move = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 2
-position = Vector2( 0, -14 )
+position = Vector2( 0, -5 )
 shape = SubResource( 5 )
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -64,3 +78,5 @@ texture = ExtResource( 3 )
 energy = 3.5
 shadow_enabled = true
 shadow_color = Color( 0.0941176, 0.0980392, 0.0862745, 1 )
+
+[connection signal="animation_finished" from="Anim" to="." method="_on_Anim_animation_finished"]

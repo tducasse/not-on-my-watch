@@ -1,8 +1,26 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Spawner.tscn" type="PackedScene" id=2]
-[ext_resource path="res://house.png" type="Texture" id=3]
+[ext_resource path="res://bed.png" type="Texture" id=3]
+[ext_resource path="res://Game.gd" type="Script" id=4]
+[ext_resource path="res://heart.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 57, 39 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 57, 0, 57, 39 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 137.07 )
@@ -16,24 +34,34 @@ extents = Vector2( 10, 244.645 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 206.842 )
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 89.2979, 18.3696 )
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 10.9188
+height = 32.7153
 
 [node name="Game" type="Node2D"]
+script = ExtResource( 4 )
 
-[node name="house" type="Sprite" parent="."]
-position = Vector2( -1, 0 )
-texture = ExtResource( 3 )
-centered = false
+[node name="ColorRect2" type="ColorRect" parent="."]
+rect_min_size = Vector2( 600, 400 )
+color = Color( 0.0980392, 0.227451, 0.215686, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Spawner" parent="." instance=ExtResource( 2 )]
 target_path = NodePath("../Target")
 entities_path = NodePath("../Entities")
 
+[node name="Bed" type="AnimatedSprite" parent="."]
+position = Vector2( 247.936, 140.103 )
+frames = SubResource( 8 )
+frame = 1
+playing = true
+
 [node name="Entities" type="YSort" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource( 1 )]
-position = Vector2( 118, 70 )
+position = Vector2( 292.927, 143.042 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 40.0
@@ -80,12 +108,52 @@ rotation = 1.57079
 scale = Vector2( 1, 1.2 )
 shape = SubResource( 4 )
 
-[node name="House" type="StaticBody2D" parent="Boundaries"]
+[node name="Middle" type="StaticBody2D" parent="Boundaries"]
+position = Vector2( -15.749, 120.322 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/House"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Middle"]
 light_mask = 2
-position = Vector2( 262.657, 19.0516 )
-shape = SubResource( 5 )
+position = Vector2( 266.437, 18.4216 )
+rotation = 1.57079
+shape = SubResource( 9 )
 
 [node name="Target" type="Position2D" parent="."]
-position = Vector2( 269.355, 61.9874 )
+position = Vector2( 247.936, 140.103 )
+
+[node name="Lives" type="HBoxContainer" parent="."]
+margin_left = 9.0
+margin_top = 8.0
+margin_right = 49.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="heart" type="Sprite" parent="Lives"]
+light_mask = 2
+texture = ExtResource( 5 )
+
+[node name="heart2" type="Sprite" parent="Lives"]
+light_mask = 2
+position = Vector2( 12, 0 )
+texture = ExtResource( 5 )
+
+[node name="heart3" type="Sprite" parent="Lives"]
+light_mask = 2
+position = Vector2( 24, 0 )
+texture = ExtResource( 5 )
+
+[node name="Score" type="Label" parent="."]
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 266.5
+margin_right = 55.0
+margin_bottom = 280.5
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="hit" from="Spawner" to="." method="_on_Spawner_hit"]
+[connection signal="score" from="Spawner" to="." method="_on_Spawner_score"]
+[connection signal="win" from="Spawner" to="." method="_on_Spawner_win"]
