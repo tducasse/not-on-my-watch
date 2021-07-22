@@ -28,6 +28,12 @@ centered = false
 
 [node name="Spawner" parent="." instance=ExtResource( 2 )]
 target_path = NodePath("../Target")
+entities_path = NodePath("../Entities")
+
+[node name="Entities" type="YSort" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource( 1 )]
+position = Vector2( 118, 70 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 40.0
@@ -37,9 +43,6 @@ color = Color( 0, 0, 0, 0.921569 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 118, 70 )
 
 [node name="Boundaries" type="Node2D" parent="."]
 

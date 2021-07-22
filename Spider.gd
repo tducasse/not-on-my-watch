@@ -14,3 +14,5 @@ func init(spawn_pos, goal_pos):
 
 func _process(delta):
 	position = position.move_toward(target_pos, delta * speed)
+	if position.distance_to(target_pos) < 10:
+		queue_free()

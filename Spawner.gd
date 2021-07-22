@@ -4,6 +4,7 @@ var Spider = preload("res://Spider.tscn")
 onready var timer = $Timer
 
 export(NodePath) var target_path
+export(NodePath) var entities_path
 
 var time = 0.5
 
@@ -50,7 +51,7 @@ func get_random_pos():
 
 func spawn():
 	var spider = Spider.instance()
-	add_child(spider)
+	get_node(entities_path).add_child(spider)
 	var pos = get_random_pos()
 	spider.init(Vector2(pos[0], pos[1]), target_pos)
 
