@@ -5,7 +5,7 @@ onready var MoveAnim = $MoveAnim
 onready var Hitbox = $Anim/Hitbox/CollisionShape2D
 
 var velocity = Vector2.ZERO
-var speed = 200
+var speed = 180
 var sprite_offset = 7
 var attacking = false
 

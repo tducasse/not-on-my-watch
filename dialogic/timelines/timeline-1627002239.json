@@ -18,7 +18,7 @@
 			"character": "character-1627002776.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Phew... I'm so tired, I'm going to bed! Grandma?"
+			"text": "Phew... finally home! Hi Grandma..."
 		},
 		{
 			"action": "join",
@@ -38,25 +38,31 @@
 			"character": "character-1627002937.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Mmmm?"
+			"text": "Hi Son, how was your day?"
 		},
 		{
 			"character": "character-1627002776.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "I've been fighting these damn spiders all day, could you make sure they don't bother me? I really need to sleep!"
+			"text": "The usual, busy crime-fighting spree, put a lot of bad guys in jail yada yada. I really need to get some sleep now, been awake for ages! "
 		},
 		{
 			"character": "character-1627002937.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "..."
+			"text": "Get some sleep then!"
+		},
+		{
+			"character": "character-1627002776.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "But I'm afraid that the guys I just put away are going to send some of their idiot minions after me..."
 		},
 		{
 			"character": "character-1627002937.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Fine..."
+			"text": "Not on my watch!"
 		},
 		{
 			"change_scene": "res://Game.tscn",

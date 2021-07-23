@@ -4,28 +4,27 @@
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://light.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 46, 43 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 46, 0, 46, 43 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 6 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 1 ) ],
 "loop": false,
 "name": "default",
 "speed": 10.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=8]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 8.11613
 height = 10.2569
 
-[sub_resource type="Animation" id=4]
-resource_name = "move"
+[sub_resource type="Animation" id=5]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -41,7 +40,7 @@ tracks/0/keys = {
 "values": [ 0.0, 5.0, 0.0, -5.0, 0.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 11.5809
 height = 1.26197
 
@@ -61,16 +60,16 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Anim/Hitbox"]
 position = Vector2( 19.478, -13.7657 )
 rotation = -0.56108
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 
 [node name="MoveAnim" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
-anims/move = SubResource( 4 )
+anims/move = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 2
 position = Vector2( 0, -5 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 0, -15 )

@@ -10,7 +10,7 @@ signal hit()
 signal win()
 signal score()
 
-var time = 2
+var time = 1.5
 
 var start = 0
 
@@ -61,7 +61,7 @@ func _ready():
 	
 func _process(_delta):
 	var current = OS.get_unix_time()
-	if current - start > 30:
+	if current - start > 20:
 		start = current
 		time = time - 0.2
 		if time <= 0:

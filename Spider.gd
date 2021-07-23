@@ -27,6 +27,8 @@ func _process(delta):
 
 
 func _on_Hurtbox_area_entered(_area):
+	if Anim.current_animation == "death":
+		return
 	stop = true
 	emit_signal("score")
 	Anim.play("death")
