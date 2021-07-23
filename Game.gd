@@ -11,6 +11,8 @@ onready var Hit = $Hit
 onready var GameOver = $GameOver
 onready var Win = $Win
 onready var Spawner = $Spawner
+onready var Music = $Music
+onready var Music1 = $Music1
 
 var score = 0
 
@@ -71,3 +73,11 @@ func _on_GameOver_custom_action(action):
 	if action == "back":
 		get_tree().paused = false
 		_on_GameOver_back()
+
+
+func _on_Music1_finished():
+	Music.play()
+
+
+func _on_Music_finished():
+	Music1.play()
