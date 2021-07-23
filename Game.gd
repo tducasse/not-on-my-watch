@@ -6,6 +6,8 @@ onready var Heart2 = $Lives/heart2
 onready var Heart3 = $Lives/heart3
 onready var Score = $Score
 onready var Bed = $Bed
+onready var Hurt = $Hurt
+onready var Hit = $Hit
 
 var score = 0
 
@@ -20,6 +22,7 @@ func blink():
 
 func _on_Spawner_hit():
 	blink()
+	Hurt.play()
 	if lives > 0:
 		lives-=1
 		if lives < 3:
@@ -37,5 +40,6 @@ func _on_Spawner_win():
 
 
 func _on_Spawner_score():
+	Hit.play()
 	score = score + 10
 	Score.text = "Score: "+ str(score)
