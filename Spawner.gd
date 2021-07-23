@@ -10,7 +10,7 @@ signal hit()
 signal win()
 signal score()
 
-var time = 1.5
+var time = 2
 
 var start = 0
 

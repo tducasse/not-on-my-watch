@@ -7,44 +7,40 @@
 [ext_resource path="res://heart.png" type="Texture" id=5]
 [ext_resource path="res://Hurt.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Hit.ogg" type="AudioStream" id=7]
+[ext_resource path="res://font.tres" type="DynamicFont" id=8]
+[ext_resource path="res://GameOver.gd" type="Script" id=9]
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 57, 39 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 3 )
 region = Rect2( 57, 0, 57, 39 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 2.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 137.07 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10, 142.1 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 10, 244.645 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10, 206.842 )
 
-[sub_resource type="CapsuleShape2D" id=9]
+[sub_resource type="CapsuleShape2D" id=8]
 radius = 10.9188
 height = 32.7153
-
-[sub_resource type="DynamicFontData" id=10]
-font_path = "res://PixelCaps-LOnE.ttf"
-
-[sub_resource type="DynamicFont" id=11]
-font_data = SubResource( 10 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -62,7 +58,8 @@ entities_path = NodePath("../Entities")
 
 [node name="Bed" type="AnimatedSprite" parent="."]
 position = Vector2( 247.936, 140.103 )
-frames = SubResource( 8 )
+frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="Entities" type="YSort" parent="."]
@@ -86,7 +83,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Left"]
 light_mask = 2
 position = Vector2( -9.19241, 141.472 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Right" type="StaticBody2D" parent="Boundaries"]
 position = Vector2( 531.391, -10.6066 )
@@ -94,7 +91,7 @@ position = Vector2( 531.391, -10.6066 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Right"]
 light_mask = 2
 position = Vector2( -10.5273, 152.15 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 
 [node name="Bottom" type="StaticBody2D" parent="Boundaries"]
 position = Vector2( 260.58, 301.554 )
@@ -103,7 +100,7 @@ position = Vector2( 260.58, 301.554 )
 light_mask = 2
 position = Vector2( -5.80789, -3.58887 )
 rotation = 1.57079
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Top" type="StaticBody2D" parent="Boundaries"]
 position = Vector2( 219.038, -23.6213 )
@@ -113,7 +110,7 @@ light_mask = 2
 position = Vector2( 35.9618, 13.0147 )
 rotation = 1.57079
 scale = Vector2( 1, 1.2 )
-shape = SubResource( 4 )
+shape = SubResource( 7 )
 
 [node name="Middle" type="StaticBody2D" parent="Boundaries"]
 position = Vector2( -15.749, 120.322 )
@@ -122,7 +119,7 @@ position = Vector2( -15.749, 120.322 )
 light_mask = 2
 position = Vector2( 266.437, 18.4216 )
 rotation = 1.57079
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Target" type="Position2D" parent="."]
 position = Vector2( 247.936, 140.103 )
@@ -156,7 +153,7 @@ margin_left = 4.0
 margin_top = 266.5
 margin_right = 55.0
 margin_bottom = 280.5
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = ExtResource( 8 )
 text = "Score: 0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -168,6 +165,36 @@ stream = ExtResource( 6 )
 [node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
+[node name="GameOver" type="AcceptDialog" parent="."]
+pause_mode = 2
+light_mask = 2
+margin_right = 83.0
+margin_bottom = 58.0
+rect_scale = Vector2( 0.5, 0.5 )
+popup_exclusive = true
+window_title = "Defeat"
+dialog_text = "You lost!"
+script = ExtResource( 9 )
+
+[node name="Win" type="AcceptDialog" parent="."]
+pause_mode = 2
+light_mask = 2
+margin_right = 83.0
+margin_bottom = 58.0
+rect_scale = Vector2( 0.5, 0.5 )
+popup_exclusive = true
+window_title = "You win!"
+dialog_text = "Congratulations!"
+script = ExtResource( 9 )
+
 [connection signal="hit" from="Spawner" to="." method="_on_Spawner_hit"]
 [connection signal="score" from="Spawner" to="." method="_on_Spawner_score"]
 [connection signal="win" from="Spawner" to="." method="_on_Spawner_win"]
+[connection signal="back" from="GameOver" to="." method="_on_GameOver_back"]
+[connection signal="confirmed" from="GameOver" to="." method="_on_GameOver_reset"]
+[connection signal="custom_action" from="GameOver" to="." method="_on_GameOver_custom_action"]
+[connection signal="reset" from="GameOver" to="." method="_on_GameOver_reset"]
+[connection signal="back" from="Win" to="." method="_on_GameOver_back"]
+[connection signal="confirmed" from="Win" to="." method="_on_GameOver_reset"]
+[connection signal="custom_action" from="Win" to="." method="_on_GameOver_custom_action"]
+[connection signal="reset" from="Win" to="." method="_on_GameOver_reset"]

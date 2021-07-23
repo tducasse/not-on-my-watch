@@ -23,7 +23,6 @@ func _process(delta):
 		Anim.play()
 		attacking = true
 	else:
-
 		velocity = Vector2.ZERO
 		if Input.is_action_pressed('right'):
 			velocity.x += 1 * delta
@@ -48,8 +47,8 @@ func _process(delta):
 		if MoveAnim.is_playing():
 			MoveAnim.stop()
 			MoveAnim.seek(0, true)
-	if not attacking:
-		velocity = move_and_slide(velocity)
+
+	velocity = move_and_slide(velocity)
 
 
 func _on_Anim_animation_finished():

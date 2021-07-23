@@ -1,0 +1,20 @@
+{
+	"color": "#ff396fd6",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1627002937.json",
+	"mirror_portraits": false,
+	"name": "Grandma",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": -230,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://grandma_portrait.png"
+		}
+	],
+	"scale": 700
+}
